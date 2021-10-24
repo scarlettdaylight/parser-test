@@ -4,13 +4,16 @@ import { getTotalView, getUniqueView } from "../log-parser";
 
 const HomePage = () => {
   const fileRef = useRef<HTMLInputElement>(null);
-  const [logData, setLogData] = useState("");
-  const [error, setError] = useState("");
+  const [logData, setLogData] = useState<string | undefined>(undefined);
+  const [error, setError] = useState<string | undefined>(undefined);
   const [fileName, setFileName] = useState<string | undefined>(undefined);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError(undefined);
+    setLogData(undefined);
+    setFileName(undefined);
+
     const file = fileRef.current?.files?.[0];
     if (!file) {
       setError("No file given.");
@@ -51,7 +54,7 @@ const HomePage = () => {
         </form>
       </div>
       {error && <div>{error}</div>}
-      {logData !== "" && (
+      {logData && (
         <div>
           <ViewTable
             className={"mb-16"}

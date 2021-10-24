@@ -1,5 +1,7 @@
 const IP_REGEX = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
 
+// ------------validateRecord
+// helper function to check if line is valid path-ip pair
 type validateRecordType = (str: string) => false | string[];
 export const validateRecord: validateRecordType = (str) => {
   //check if empty
@@ -11,7 +13,9 @@ export const validateRecord: validateRecordType = (str) => {
   return s;
 };
 
-//could just reuse parsePageView to loop O(2n), but would like to finish it O(n)
+// ------------getTotalView
+// function is with O(n)
+// used Map in 1st design, changed to object for easier-to-read UI rendering
 type getTotalViewType = (str: string) => PageViewCount;
 
 export const getTotalView: getTotalViewType = (str) => {
@@ -28,6 +32,9 @@ export const getTotalView: getTotalViewType = (str) => {
   return result;
 };
 
+// ------------getUniqueView
+// function is with O(n)
+// used extra memory to keep track of each path and ip in order to achieve O(n)
 type getUniqueViewType = (str: string) => PageViewCount;
 
 export const getUniqueView: getUniqueViewType = (str) => {

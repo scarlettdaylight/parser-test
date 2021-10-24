@@ -13,3 +13,8 @@ Launches the test runner in the interactive watch mode.
 
 Builds the app for production to the `build` folder.
 
+
+## TODO
+- Improve HomePage test cases by figure out how to test useRef + input
+- Extract File input into separate component
+- Gives loading status when processing large file
