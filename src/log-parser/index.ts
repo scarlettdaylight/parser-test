@@ -6,8 +6,7 @@ export const validateRecord: validateRecordType = (str) => {
   if (str === "") return false;
   const s = str.split(" ");
   //check if contain only two items and ip valid
-  if (s.length !== 2 || !/^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/.test(s[1]))
-    return false;
+  if (s.length !== 2 || !IP_REGEX.test(s[1])) return false;
 
   return s;
 };
