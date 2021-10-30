@@ -1,10 +1,12 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { queryAllByRole, render } from "@testing-library/react";
 import HomePage from "./HomePage";
 import { Simulate } from "react-dom/test-utils";
 
 test("should render title and file input", () => {
-  const { getByRole, getByLabelText, getAllByRole } = render(<HomePage />);
+  const { getByRole, getByLabelText, getAllByRole, queryAllByRole } = render(
+    <HomePage />
+  );
 
   const heading = getByRole("heading", { level: 2 });
   expect(heading).toBeInTheDocument();
@@ -21,7 +23,7 @@ test("should render title and file input", () => {
   const file = new File(["/help_page/1 126.318.035.038"], "line.log", {
     type: "text/plain",
   });
-  // @ts-ignore
+
   Simulate.change(label, { target: { files: [file] } });
-  expect(getAllByRole("row")).toHaveLength(0);
+  expect(queryAllByRole("row")).toHaveLength(0);
 });
